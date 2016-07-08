@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head >
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <!-- 最新編譯和最佳化的 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<!-- 選擇性佈景主題 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+<!-- 最新編譯和最佳化的 JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="jquery.tinyMap.js"></script>
+
+  <link rel="stylesheet" href="/resources/demos/style.css">
+<style type="text/css">
+    .publish_page
+    {
+        margin-left:60px;
+    }
+   
+    
+    .publish_content
+    {
+        
+        margin-top:60px;
+        margin-left:60px;
+        border-style:groove;
+        
+        padding:0px;
+        height:350px;
+        width:300px;
+        float:left;
+    }
+    .publish_content2
+    {
+        
+        margin-top:60px;
+        margin-right:60px;
+        border-style:groove;
+        
+        padding:0px;
+        height:350px;
+        width:280px;
+        float:left;
+    }
+    .publish_content .publish_option
+    {
+      
+       
+        margin:0px;
+        background-color:#F0F0F0;
+        padding:15px;
+    }
+    .publish_content .publish_location
+    {
+         margin:0px;
+        padding:5px;
+    }
+    .publish_content .timetext
+    {
+        margin:0px;
+        padding:5px;
+    }
+    
+    
+    input[type=radio] {
+		display:none;
+	}
+
+input[type=radio] + label {
+		display:inline-block;
+		margin:-2px;
+		padding: 4px 12px;
+		margin-bottom: 0;
+		font-size: 14px;
+		line-height: 20px;
+		color: #333;
+		text-align: center;
+		text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+		vertical-align: middle;
+		cursor: pointer;
+		background-color: #f5f5f5;
+		background-image: -moz-linear-gradient(top,#fff,#e6e6e6);
+		background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6));
+		background-image: -webkit-linear-gradient(top,#fff,#e6e6e6);
+		background-image: -o-linear-gradient(top,#fff,#e6e6e6);
+		background-image: linear-gradient(to bottom,#fff,#e6e6e6);
+		background-repeat: repeat-x;
+		border: 1px solid #ccc;
+		border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+		border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+		border-bottom-color: #b3b3b3;
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#ffe6e6e6',GradientType=0);
+		filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+		-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+		-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+		box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	}
+
+	 input[type=radio]:checked + label{
+		   background-image: none;
+		outline: 0;
+		-webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+		-moz-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+		box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+			background-color:#e0e0e0;
+	}
+
+	
+	
+</style>
+<script>
+  //  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx9K7NbfApKk7tS8f7bZIhQ_ggMT3fRU8">  //goolge api
+    $(document).ready(function () {
+          var opt={
+       dayNames:["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
+       dayNamesMin:["日","一","二","三","四","五","六"],
+       monthNames:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
+       monthNamesShort:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
+       prevText:"上月",
+       nextText:"次月",
+       weekHeader:"週",
+       showMonthAfterYear:true,
+       dateFormat:"yy-mm-dd",
+       minDate:new Date()
+       };
+        $("#datepicker").datepicker(opt);
+        var Today=new Date();
+        var month,temp,date;
+        if(Today.getMonth()+1<10)
+        {
+            temp=Today.getMonth()+1;
+            temp=String(temp);
+            month="0"+temp;
+        }
+        else
+            month=Today.getMonth()+1;
+        if(Today.getDate()<10)
+        {
+            temp=Today.getDate();
+            temp=String(temp);
+            date="0"+temp;
+        }
+        else
+            date=Today.getDate();
+            
+        　$( "#datepicker" ).prop("value",Today.getFullYear()+ 
+         "-" +(month) + "-" + date);
+            
+        $( "#datepicker" ).datepicker("minDate","2016-07-07");
+   //     $("#timepicker").timepicker();
+      });
+  </script>
+</head>
+<body >
+    <ul class="nav nav-tabs" style="float:right" id="navbar-spy">
+        <li><a  href="carpool_index.html">首頁</a></li>
+    </ul>
+    
+<div class="publish_page" style="width:auto;height:auto;">
+    <div class="publish_content">
+        <div class="publish_option">
+            我要
+            <input type="radio" id="radio1" name="radios" value="all" checked>
+            <label for="radio1" style="color:#00CACA">提供座位</label>
+            <input type="radio" id="radio2" name="radios"value="false">
+            <label for="radio2" style="color:#00CACA">找車搭</label>
+ 
+        </div>
+        <div style="width:295px;height:1px;margin:0px auto;padding:0px;background-color:#D5D5D5;overflow:hidden;">
+       <!-- 線-->     
+        </div>
+        <div class="publish_location">
+            出發地
+            <input type="text" style="width:280px"name="" placeholder="輸入地址或地點"/>
+        </div>
+        <div class="publish_location">
+            目的地
+            <input type="text" name="" style="width:280px"placeholder="輸入地址或地點"/>
+        </div>
+        <div class="timetext">
+            <p>選擇日期<input type="text" id="datepicker"></p>
+        </div>
+        
+        <div class="timetext">
+            <p>選擇時間<input type="text" id="timepicker"></p>
+        </div>
+        <div>
+            <div class="publish_location">
+                提供座位數
+                    <button type="button" class="btn btn-default" id="seat_reduce" style="font-size:10px">
+                        -</button>
+                        <input type="text" value="1" style="width:25px; "name=""/>
+                    <button type="button" class="btn btn-default" id="seat_plus"style="font-size:10px">
+                        +</button>
+            </div>
+    
+            <div class="publish_location">
+                每位價格
+                <input type="text" id="price" style="width:80px; "name=""/>
+                <button type="button" class="btn btn-success" id="publish_button"style="font-size:10px;float:right">
+                    刊登</button>
+            </div>
+        </div>
+       
+    </div>
+    <div class="publish_content2">
+         <form>
+        <div style="font-size:20px">
+            <input type="checkbox" name="food_plus" value=""id="food_plus"  />禁止飲食<br>
+            <input type="checkbox" name="pet_plus"value=""/>禁止寵物<br>
+            <input type="checkbox" name="baggage_plus"value=""/>禁止大型行李<br>
+            <input type="checkbox" name="smoke_plus"value=""/>禁止吸煙、喝酒、嚼檳榔<br>
+        </div>
+         </form>
+         <br><br>
+         <div>
+             <p style="font-size:20px ">備註</p>
+         </div>
+         <div>
+             <textarea name="aaa" rows="5" cols="25"> </textarea>
+         </div>
+    </div>
+</div>
+    
+    
+    
+    
+    
+    
+</body>

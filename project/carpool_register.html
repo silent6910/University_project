@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <!-- 最新編譯和最佳化的 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<!-- 選擇性佈景主題 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+<!-- 最新編譯和最佳化的 JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+    .form-group
+    {
+        width:40%;
+        height:50px
+    }
+  #text_label
+  {
+    display:inline;  
+  }
+  h7
+  {
+    color:red;
+  }
+</style>
+   <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+       $(document).ready(function () {
+         function isnull(id)
+         {
+           $("#"+id).on("blur",function(){
+             if($("#"+id).prop("value")=='')
+             $("#"+id+"_label").text("不得為空")
+             else
+             $("#"+id+"_label").text("")
+           })
+         }
+         $("#Account").on("blur",function(){
+           if($("#Account").prop("value")=='')
+             $("#Account_label").text("不得為空")
+             else
+             $("#Account_label").text("")
+             
+         });
+         isnull("Password");
+         isnull("Password2");
+         isnull("e-mail");
+         $("#span2").on("mouseover",function() {
+         $('#span2').datetimepicker('show');    
+         });
+         
+       });
+        </script>
+
+
+
+</head>  
+<body>
+     
+
+<form  role="form" style="font-family:Microsoft JhengHei;display:inline; " 
+action='carpool_register.php' method=post>
+  <div >
+  <ul class="nav nav-tabs" style="float:right">
+        <li><a href="carpool_index.html">首頁</a></li>
+        <li><a href="carpool_register.html">註冊</a></li>
+        <li><a href="carpool_login.html">登入</a></li>
+        <li><a href="carpool_publish.html" style="color:green">刊登</a></li>
+    </ul>
+</div>
+<br>
+     <div  class="col-lg-12 "style="margin-left:150px;margin-top:50px">
+  <div class="form-group"  >
+    <div id="text_label">
+    <label for="exampleInputEmail1" >*帳號</label>  <h7 id="Account_label"></h7>
+    </div>
+    <input type="text" class="form-control" name="Account"id="Account" placeholder="輸入帳號" required>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">*密碼</label>  <h7 id="Password_label"></h7>
+    <input type="password" class="form-control" name="Password" id="Password" placeholder="輸入密碼" required>
+    
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">*確認密碼</label>  <h7 id="Password2_label"></h7>
+    <input type="password" class="form-control" name="Password2" id="Password2" placeholder="再次輸入密碼" required>
+    
+  </div>
+  
+  <div class="form-group">
+    <label for="exampleInputPassword1">*電子郵件</label>  <h7 id="e-mail_label"></h7>
+    <input type="email" class="form-control"  name="e-mail" id="e-mail" placeholder="e-mail" required>
+    
+  </div>
+  
+  <div class="form-group">
+    <label for="exampleInputPassword1">暱稱</label>
+    <input type="text" class="form-control" name="nickname"id="nickname" placeholder="暱稱" required>
+    
+  </div>
+  <!--<div class="form-group">
+    <label for="exampleInputFile">檔案上傳</label>
+    <input type="file" id="exampleInputFile">
+    <p class="help-block">在此示範區塊層級輔助說明文字。</p>
+  </div>  -->
+  <div>
+    <label>
+     <input type="radio" name="gender" value="男" checked/>男
+     <input type="radio" name="gender"value="女"/>女
+    </label>
+    </div>
+ <div>
+  <p class="help-block" >*為必填選項</p>
+</div>
+  <div class="form-group">
+  <button type="submit" name="send"class="btn btn-info" style="font-size:16px;float:right">註冊</button>
+  </div>
+  
+   </div>
+  </form>
+
+
+</body>
+
+  
+</html>
